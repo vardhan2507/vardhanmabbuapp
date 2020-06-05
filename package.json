@@ -4,6 +4,7 @@
   "description": "Backend for vardhanmabbu.com",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -e ts -w ./ -x ts-node -r dotenv/config ./server.ts",
     "start": "npm run tsc && node -r dotenv/config ./dist/server.js"
