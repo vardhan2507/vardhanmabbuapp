@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import { Server } from '@overnightjs/core';
 import config from './config';
 import * as controllers from './src/controllers';
+import socket from './socket';
 
 class App extends Server {
 
@@ -12,6 +13,7 @@ class App extends Server {
         this.corsPolicy();
         this.middleWare();
         this.loadControllers();
+        socket;
     }
 
     private corsPolicy = () => {
