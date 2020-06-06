@@ -11,7 +11,7 @@ class IoSocket {
     socketData = [];
 
     constructor() {
-        console.log('Starting socket server...');
+        console.log('Starting socket server in port...=> ', config.socketPort);
         this.connectToSocket();
     }
 
