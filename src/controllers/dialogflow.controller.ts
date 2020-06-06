@@ -15,9 +15,11 @@ export class FacingController {
 
             case INTENT_NAMES.WelcomIntent:
                 if (request.queryResult.parameters.passcode) {
+                    console.log('Got the Passcode', request.queryResult.parameters.passcode);
                     let dataIndex = socket.socketData.findIndex(item => {
                         return item.passcode == parseInt(request.queryResult.parameters.passcode, 10);
                     });
+                    console.log("Passcode is in index", dataIndex);
                     if (dataIndex >= 0) {
                         socket.socketData[dataIndex].botSessionId = request.session;
                     }
@@ -33,6 +35,7 @@ export class FacingController {
                     return item.botSessionId == request.session;
                 });
                 dataIndex = dataIndex >= 0 ? socket.socketData.length - 1 - dataIndex : dataIndex
+                console.log("Session Index is", dataIndex);
                 if (dataIndex >= 0) {
                     let roomId = socket.socketData[dataIndex].roomId;
                     socket.emitData(roomId, SOCKET_EVENTS.NAVIGATE, { url: request.queryResult.parameters.url });
