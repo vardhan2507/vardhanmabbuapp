@@ -29,9 +29,10 @@ export class FacingController {
                 break;
 
             case INTENT_NAMES.Navigation:
-                let dataIndex = socket.socketData.findIndex(item => {
+                let dataIndex = socket.socketData.slice().reverse().findIndex(item => {
                     return item.botSessionId == request.session;
                 });
+                dataIndex = dataIndex >= 0 ? socket.socketData.length - 1 - dataIndex : dataIndex
                 if (dataIndex >= 0) {
                     let roomId = socket.socketData[dataIndex].roomId;
                     socket.emitData(roomId, SOCKET_EVENTS.NAVIGATE, { url: request.queryResult.parameters.url });
