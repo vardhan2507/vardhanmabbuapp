@@ -11,18 +11,20 @@ class IoSocket {
     socketData = [];
 
     constructor() {
-        console.log('Starting socket server in port...=> ', config.socketPort);
-        this.connectToSocket();
+        // this.connectToSocket();
     }
+
+
 
     getNextPasscode() {
         return ++this.passcode;
     }
 
-    connectToSocket() {
-        let app = express();
-        let httpServer = http.createServer(app);
-        this.io = socketio(httpServer);
+    connectToSocket(server) {
+        console.log("Socket is listening");
+        // let app = express();
+        // let httpServer = http.createServer(app);
+        this.io = socketio(server);
 
         this.io.on('connection', (socket) => {
             let uuid = socket.handshake.query.uuid;
@@ -36,7 +38,7 @@ class IoSocket {
             });
         });
 
-        this.io.listen(config.socketPort);
+        // this.io.listen(config.socketPort);
     }
 
     public getSocketInstance() {

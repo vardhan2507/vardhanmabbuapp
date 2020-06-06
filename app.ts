@@ -8,12 +8,12 @@ import socket from './socket';
 
 class App extends Server {
 
+
     constructor() {
         super();
         this.corsPolicy();
         this.middleWare();
         this.loadControllers();
-        socket;
     }
 
     private corsPolicy = () => {
@@ -45,9 +45,10 @@ class App extends Server {
     }
 
     public start() {
-        this.app.listen(config.port, () => {
+        let server=this.app.listen(config.port, () => {
             console.log("Starting Beast... serving from port=> :" + config.port);
         })
+        socket.connectToSocket(server);
     }
 
 }
